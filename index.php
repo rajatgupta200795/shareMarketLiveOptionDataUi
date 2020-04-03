@@ -129,9 +129,13 @@ return columns;
 <br><br>
 <div id="txt"></div>
 
+<center>
+Follow on Twitter for all updates: <iframe src="https://platform.twitter.com/widgets/follow_button.html?screen_name=rajatgupta207&show_screen_name=false&show_count=false&size=l"
+title="Follow on Twitter" width="80" height="30" style="border: 0; overflow: hidden;"></iframe>
+<center>
+
 <div  style="text-align:right;"><a href="" id="downloadFileId"></a></div>
 <br>
-
 </div>
 
 <table id="table" align = "center" border="1px"></table>
