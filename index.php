@@ -101,18 +101,25 @@ return columns;
 <h2>Option Chain Data</h2>
 <p>Enter strike price and expiry date and get Nifty option chain data of Indian stock market.</p>
 
-<br><br>
+</br>
+<iframe
+  src="https://platform.twitter.com/widgets/follow_button.html?screen_name=rajatgupta207&show_screen_name=true&show_count=true&size=l"
+  title="Follow Rajat Gupta on Twitter"
+  width="300"
+  height="40"
+  style="border: 0; overflow: hidden;"
+  ></iframe>
 
 <form>
 <div class="form-group">
 <div class="form-row">
 <div class="form-group col-md-3">
 <label for="Strike Price">Strike Price:</label></br>
-<input  type="number" id="strike_price" class="form-control" name="strike_price" value="9000" placeholder="Strike Price" required>
+<input  type="number" id="strike_price" class="form-control" name="strike_price" value="8000" placeholder="Strike Price" required>
 </div>
 <div class="form-group col-md-3">
 <label for="Expiry Date">Expiry Date:</label></br>
-<input type="text" id="expiry_date" class="form-control" name="expiry_date" value="1APR2020" placeholder="Expiry Date" required>
+<input type="text" id="expiry_date" class="form-control" name="expiry_date" value="9APR2020" placeholder="Expiry Date" required>
 </div>
 <div class="form-group col-md-3">
 <label for="Date">Date:</label></br>
@@ -129,13 +136,9 @@ return columns;
 <br><br>
 <div id="txt"></div>
 
-<center>
-Follow on Twitter for all updates: <iframe src="https://platform.twitter.com/widgets/follow_button.html?screen_name=rajatgupta207&show_screen_name=false&show_count=false&size=l"
-title="Follow on Twitter" width="80" height="30" style="border: 0; overflow: hidden;"></iframe>
-<center>
-
 <div  style="text-align:right;"><a href="" id="downloadFileId"></a></div>
 <br>
+
 </div>
 
 <table id="table" align = "center" border="1px"></table>
