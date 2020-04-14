@@ -30,6 +30,9 @@ var tag;
 $(document).ready(function(){
 $("#option_button").click(function(){
 document.getElementById("created_link_text").innerHTML = "";
+document.getElementById("table").removeAttribute("class");
+document.getElementById("table").setAttribute("class", "tableOption");
+
 var expiry_date = document.getElementById("option_expiry_date").value;
 var req_date = document.getElementById("option_req_date").value;
 var d = new Date();
@@ -71,6 +74,10 @@ $(document).ready(function(){
 $("#strike_button").click(function(){
 
 document.getElementById("created_link_text").innerHTML = "";
+
+document.getElementById("table").removeAttribute("class");
+document.getElementById("table").setAttribute("class", "tableStrike");
+
 
 var strike_price = document.getElementById("strike_price").value;
 var expiry_date = document.getElementById("expiry_date").value;
@@ -119,7 +126,7 @@ $(this).children(":eq(5)").after($(this).children(":eq(14)"));
 $(this).children(":eq(6)").after($(this).children(":eq(14)"));
 
 $(this).children("td:eq(4)").css("color", "#3a3d7d");
-$(this).children("td:eq(6)").css("color", "#c1722df5");
+$(this).children("td:eq(6)").css("color", "#080f2bf5");
 $(this).children("td:eq(7)").css("color", "#2e7b7bf5");
 $(this).children("td:eq(8)").css("color", "#3a3d7d");
 $(this).children("td:eq(10)").css("color", "#3a3d7d");
@@ -132,14 +139,89 @@ $(this).children("td:eq(6)").css("text-align", "center");
 $(this).children("td:eq(7)").css("text-align", "center");
 $(this).children("td:eq(8)").css("text-align", "center");
 
+});
 
+$('table tr:eq(0) th:eq(0)').text("OI");
+$('table tr:eq(0) th:eq(1)').text(" Change in OI");
+$('table tr:eq(0) th:eq(2)').text("Volumes");
+$('table tr:eq(0) th:eq(3)').text("IV");
+$('table tr:eq(0) th:eq(4)').text("LTP");
+$('table tr:eq(0) th:eq(5)').text("Net Change");
+$('table tr:eq(0) th:eq(6)').text(" Time ");
+$('table tr:eq(0) th:eq(7)').text("Spot Price");
+$('table tr:eq(0) th:eq(8)').text("Strike Price");
+$('table tr:eq(0) th:eq(9)').text("Net Change");
+$('table tr:eq(0) th:eq(10)').text("LTP");
+$('table tr:eq(0) th:eq(11)').text("IV");
+$('table tr:eq(0) th:eq(12)').text("Volume");
+$('table tr:eq(0) th:eq(13)').text("Change in OI");
+$('table tr:eq(0) th:eq(14)').text(" OI ");
+
+function numberWithCommas(number) {
+var parts = number.toString().split(".");
+parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+return parts.join(".");
+}
+
+$(document).ready(function() {
+$("table tr").each(function() {
+var num0 = $(this).children(":eq(0)").text();
+var num1 = $(this).children(":eq(1)").text();
+var num2 = $(this).children(":eq(2)").text();
+var num12 = $(this).children(":eq(12)").text();
+var num13 = $(this).children(":eq(13)").text();
+var num14 = $(this).children(":eq(14)").text();
+$(this).children(":eq(0)").text(numberWithCommas(num0));
+$(this).children(":eq(1)").text(numberWithCommas(num1));
+$(this).children(":eq(2)").text(numberWithCommas(num2));
+$(this).children(":eq(12)").text(numberWithCommas(num12));
+$(this).children(":eq(13)").text(numberWithCommas(num13));
+$(this).children(":eq(14)").text(numberWithCommas(num14));
+});
 });
 
 jQuery.each($("table "), function() {
-$(this).children("tr:eq(0)").css({"background-color": "#e0e0e0", "font-size": "13px", "text-transform": "uppercase"});
+$(this).children("tr:eq(0)").css({"background-color": "#e0e0e0", "font-size": "13px"});
 $(this).children("tr:eq(0)").val($(this).val().toUpperCase());
-
 });
+
+$(document).ready(function() {
+$( "table tr").each(function(){
+var value1 = parseFloat( $(this).children("td:eq(5)").text() );
+var value2 = parseFloat( $(this).children("td:eq(9)").text() );
+
+var value3 = parseFloat( $(this).children("td:eq(1)").text() );
+var value4 = parseFloat( $(this).children("td:eq(13)").text() );
+
+//document.write(value)
+if (value1 < 0 ){
+$( this ).children(":eq(5)").css('color', 'red');
+}
+else if(value1 > 0){
+$( this ).children(":eq(5)").css('color', 'green');
+}
+if (value2 < 0){
+$( this ).children(":eq(9)").css('color', 'red');
+}
+else if(value2 > 0){
+$( this ).children(":eq(9)").css('color', 'green');
+}
+
+if (value3 < 0 ){
+$( this ).children(":eq(1)").css('color', 'red');
+}
+else if(value3 > 0){
+$( this ).children(":eq(1)").css('color', 'green');
+}
+if (value4 < 0){
+$( this ).children(":eq(13)").css('color', 'red');
+}
+else if(value4 > 0){
+$( this ).children(":eq(13)").css('color', 'green');
+}
+});
+});
+
 
 $( "td").attr("width","60");
 $('th').css('text-align', 'center');
@@ -186,19 +268,21 @@ document.getElementById("strike_form").className = 'hidden';
 
 function hideTableOnSelectOption(){
 document.getElementById("table").innerHTML = "";
+document.getElementById("created_link_text").innerHTML = "";
 }
 
 </script>
+
 </head>
 <body class="unselectable" style="font-family: Arial, Helvetica, sans-serif;">
 
 <div class="container">
 <h2>Option Chain Data</h2>
-<p>Enter strike price and expiry date and get Nifty option chain data of Indian stock market.</p>
+<p>Enjoy free Nifty option chain data recording for all expiry with historical data.</p>
 
-<iframe src="https://platform.twitter.com/widgets/follow_button.html?screen_name=rajatgupta207&show_screen_name=true&show_count=true&size=l" title="Follow Rajat Gupta on Twitter"
+<iframe src="https://platform.twitter.com/widgets/follow_button.html?screen_name=rajatgupta207&show_screen_name=false&show_count=true&size=l" title="Follow Rajat Gupta on Twitter"
 width="300" height="40" style="border: 0; overflow: hidden;" ></iframe>
-<hr>
+<br>
 
 <input type="radio" id="select_option_sheet" onclick="display()" name="select_data-type" checked> <label for="select_option_sheet">Option Sheet</label> &nbsp;&nbsp;&nbsp;
 <input type="radio" id="select_strike_price" onclick="display()" name="select_data-type"> <label for="select_strike_price">Strike Price</label>
@@ -212,7 +296,13 @@ width="300" height="40" style="border: 0; overflow: hidden;" ></iframe>
 </div>
 <div class="form-group col-md-3">
 <label for="Expiry Date">Expiry Date:</label></br>
-<input type="text" id="expiry_date" class="form-control" name="expiry_date" value="9APR2020" placeholder="Expiry Date" required>
+<select id="expiry_date" class="form-control" name="expiry_date" value="9APR2020" >
+<?php
+$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020");
+for($i=0; $i<sizeof($expiry_select_options_list); $i++)
+echo "<option>".$expiry_select_options_list[$i]."</option>";
+?>
+</select>
 </div>
 <div class="form-group col-md-3">
 <label for="Date">Date:</label></br>
@@ -286,19 +376,36 @@ echo "<option>".$expiry_select_options_list[$i]."</option>";
 </div>
 
 <div class="container">
-</br>
 <style>
 div.sticky {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
 }
+
+.tableOption th {
+  background-color: #e0e0e0;
+  position: relative;
+  position: sticky;
+  top: 38px;
+}
+.tableStrike th {
+  background-color: #e0e0e0;
+  position: relative;
+  position: sticky;
+  top: 0px;
+}
+
+table {
+  border-collapse:separate;
+  border-spacing: 0 1em;
+}
 </style>
 
 <div class="sticky"><div id="created_link_text" style="padding: 5px; background-color: white;"></div></div>
 </br>
 
-<table style="font-size:14px; border-color: #aca99f; border-spacing: 5px;" id="table" border="1px"></table>
+<table style="font-size:14px; border-color: #aca99f; border-spacing: 5px;" id="table" class="tableOption" border="1px"></table>
 </div>
 
 <br><br>
