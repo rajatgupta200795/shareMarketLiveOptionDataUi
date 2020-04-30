@@ -14,7 +14,7 @@ echo "Two input data is missing";
 exit;
 fi
 
-query='select DISTINCT RAW created  from market where meta().id like "'$expiry'%" and (created between '"$created1"' and '"$created2"') order by created'
+query='select DISTINCT RAW created  from market where meta().id like "'$expiry'%" and (created between '$created1' and '$created2') order by created'
 sudo /opt/couchbase/bin/cbq --script="$query" --engine=http://localhost:8091 -u Administrator -p rajat123  |  tail -n +6 > resultData.json;
 x=$(jq '.results ' resultData.json);
 rm resultData.json;

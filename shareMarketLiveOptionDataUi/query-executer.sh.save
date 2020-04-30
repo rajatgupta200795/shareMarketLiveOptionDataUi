@@ -22,8 +22,8 @@ x=$(jq '.results ' resultData.json);
 #echo $x > $tag".json";
 
 echo $x > resultData.json;
-python3 greeks-adder.py $expiry $req_date
-#echo $x;
+#python3 greeks-adder.py expiry req_date
+echo $x;
 
 
 #python3 jsonToCsv.py $tag
