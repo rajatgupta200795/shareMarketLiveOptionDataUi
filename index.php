@@ -143,6 +143,19 @@ $(this).children("td:eq(13)").css("color", "#2e7b7bf5");
 $(this).children("td:eq(14)").css("color", "#3a3d7d");
 $(this).children("td:eq(16)").css("color", "#3a3d7d");
 
+var greek_background = "#f5fffa"
+$(this).children("td:eq(0)").css("background-color", greek_background);
+$(this).children("td:eq(1)").css("background-color", greek_background);
+$(this).children("td:eq(2)").css("background-color", greek_background);
+$(this).children("td:eq(3)").css("background-color", greek_background);
+$(this).children("td:eq(4)").css("background-color", greek_background);
+
+$(this).children("td:eq(22)").css("background-color", greek_background);
+$(this).children("td:eq(23)").css("background-color", greek_background);
+$(this).children("td:eq(24)").css("background-color", greek_background);
+$(this).children("td:eq(25)").css("background-color", greek_background);
+$(this).children("td:eq(26)").css("background-color", greek_background);
+
 $(this).children("td:eq(12)").css("background-color", "#e7e3d5");
 $(this).children("td:eq(13)").css("background-color", "#e7e3d5");
 $(this).children("td:eq(14)").css("background-color", "#e7e3d5");
@@ -153,7 +166,7 @@ $(this).children("td:eq(14)").css("text-align", "center");
 
 });
 
-var greek_color = "#dfc7e8";
+var greek_color = "#e0e0e0";
 $('table tr:eq(0) th:eq(0)').css("background-color", greek_color);
 $('table tr:eq(0) th:eq(1)').css("background-color", greek_color);
 $('table tr:eq(0) th:eq(2)').css("background-color", greek_color);
@@ -203,18 +216,18 @@ return parts.join(".");
 
 $(document).ready(function() {
 $("table tr").each(function() {
-var num0 = $(this).children(":eq(5)").text();
-var num1 = $(this).children(":eq(6)").text();
-var num2 = $(this).children(":eq(7)").text();
-var num12 = $(this).children(":eq(19)").text();
-var num13 = $(this).children(":eq(20)").text();
-var num14 = $(this).children(":eq(21)").text();
-$(this).children(":eq(5)").text(numberWithCommas(num0));
-$(this).children(":eq(6)").text(numberWithCommas(num1));
-$(this).children(":eq(7)").text(numberWithCommas(num2));
-$(this).children(":eq(19)").text(numberWithCommas(num12));
-$(this).children(":eq(20)").text(numberWithCommas(num13));
-$(this).children(":eq(21)").text(numberWithCommas(num14));
+var num0 = $(this).children(":eq(4)").text();
+var num1 = $(this).children(":eq(5)").text();
+var num2 = $(this).children(":eq(6)").text();
+var num12 = $(this).children(":eq(18)").text();
+var num13 = $(this).children(":eq(19)").text();
+var num14 = $(this).children(":eq(20)").text();
+$(this).children(":eq(4)").text(numberWithCommas(num0));
+$(this).children(":eq(5)").text(numberWithCommas(num1));
+$(this).children(":eq(6)").text(numberWithCommas(num2));
+$(this).children(":eq(18)").text(numberWithCommas(num12));
+$(this).children(":eq(19)").text(numberWithCommas(num13));
+$(this).children(":eq(20)").text(numberWithCommas(num14));
 });
 });
 
@@ -222,42 +235,44 @@ $(this).children(":eq(21)").text(numberWithCommas(num14));
 
 $(document).ready(function() {
 $( "table tr").each(function(){
-var value1 = parseFloat( $(this).children("td:eq(6)").text() );
-var value2 = parseFloat( $(this).children("td:eq(11)").text() );
+var value1 = parseFloat( $(this).children("td:eq(5)").text() );
+var value2 = parseFloat( $(this).children("td:eq(10)").text() );
 
-var value3 = parseFloat( $(this).children("td:eq(15)").text() );
-var value4 = parseFloat( $(this).children("td:eq(20)").text() );
+var value3 = parseFloat( $(this).children("td:eq(14)").text() );
+var value4 = parseFloat( $(this).children("td:eq(19)").text() );
 
 //document.write(value)
 if (value1 < 0 ){
-$( this ).children(":eq(6)").css('color', 'red');
+$( this ).children(":eq(5)").css('color', 'red');
 }
 else if(value1 > 0){
-$( this ).children(":eq(6)").css('color', 'green');
+$( this ).children(":eq(5)").css('color', 'green');
 }
 if (value2 < 0){
-$( this ).children(":eq(11)").css('color', 'red');
+$( this ).children(":eq(10)").css('color', 'red');
 }
 else if(value2 > 0){
-$( this ).children(":eq(11)").css('color', 'green');
+$( this ).children(":eq(10)").css('color', 'green');
 }
 
 if (value3 < 0 ){
-$( this ).children(":eq(15)").css('color', 'red');
+$( this ).children(":eq(14)").css('color', 'red');
 }
 else if(value3 > 0){
-$( this ).children(":eq(15)").css('color', 'green');
+$( this ).children(":eq(14)").css('color', 'green');
 }
 if (value4 < 0){
-$( this ).children(":eq(20)").css('color', 'red');
+$( this ).children(":eq(19)").css('color', 'red');
 }
 else if(value4 > 0){
-$( this ).children(":eq(20)").css('color', 'green');
+$( this ).children(":eq(19)").css('color', 'green');
 }
 });
 });
 
 
+$('table tr').find('td:eq(4),th:eq(4)').remove();
+$('table tr').find('td:eq(21),th:eq(21)').remove();
 
 
 
@@ -314,6 +329,18 @@ document.getElementById("created_link_text").innerHTML = "";
 </head>
 <body class="unselectable" style="font-family: Arial, Helvetica, sans-serif;">
 
+<?php
+
+$all_dates = shell_exec("sudo /var/www/html/all-dates-query-executer.sh");
+$all_dates = str_replace('[', '', $all_dates);
+$all_dates = str_replace(']', '', $all_dates);
+$all_dates = explode(',', $all_dates);
+// echo"<select">;
+// foreach($all_dates as $k => $v)
+// echo "<option>".str_replace('"', '', $v)."</option>";
+// echo"</select">;
+?>
+
 <div class="container">
 <h2>Option Chain Data</h2>
 <p>Enjoy free Nifty option chain data recording for all expiry with historical data.</p>
@@ -344,7 +371,13 @@ echo "<option>".$expiry_select_options_list[$i]."</option>";
 </div>
 <div class="form-group col-md-3">
 <label for="Date">Date:</label></br>
-<input type="text" id="req_date" class="form-control" name="req_date" value="29/04/2020" placeholder="01/04/2020" required>
+<?php
+echo'<select id="req_date" class="form-control" name="req_date">';
+foreach($all_dates as $k => $v)
+echo "<option>".str_replace('"', '', $v)."</option>";
+echo"</select>";
+?>
+<!--<input type="text" id="req_date" class="form-control" name="req_date" value="29/04/2020" placeholder="01/04/2020" required>-->
 </div>
 <div class="form-group col-md-3">
 <br>
@@ -361,7 +394,7 @@ echo "<option>".$expiry_select_options_list[$i]."</option>";
 <label for="Expiry Date">Expiry Date:</label></br>
 <select id="option_expiry_date" class="form-control" name="option_expiry_date" value="9APR2020" >
 <?php
-$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020");
+$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020");
 for($i=0; $i<sizeof($expiry_select_options_list); $i++)
 echo "<option>".$expiry_select_options_list[$i]."</option>";
 ?>
@@ -369,7 +402,13 @@ echo "<option>".$expiry_select_options_list[$i]."</option>";
 </div>
 <div class="form-group col-md-3">
 <label for="Date">Date:</label></br>
-<input type="text" id="option_req_date" class="form-control" name="option_req_date" value="01/04/2020" placeholder="01/04/2020" required>
+<?php
+echo'<select id="option_req_date" class="form-control" name="option_req_date">';
+foreach($all_dates as $k => $v)
+echo "<option>".str_replace('"', '', $v)."</option>";
+echo"</select>";
+?>
+<!--<input type="text" id="option_req_date" class="form-control" name="option_req_date" value="01/04/2020" placeholder="01/04/2020" required>-->
 </div>
 <div class="form-group col-md-3">
 <label for="Time">Time:</label></br>
