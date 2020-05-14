@@ -590,7 +590,7 @@ echo "<option>".$i."</option>";
 <label for="Expiry Date">Expiry Date:</label></br>
 <select id="expiry_date" class="form-control" name="expiry_date" value="9APR2020" >
 <?php
-$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020");
+$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020", "30JUL2020");
 $arrayLength = sizeof($expiry_select_options_list);
 for($i=0; $i<$arrayLength; $i++)
 echo "<option>".$expiry_select_options_list[$arrayLength - $i -1]."</option>";
@@ -623,7 +623,7 @@ echo"</select>";
 <label for="Expiry Date">Expiry Date:</label></br>
 <select id="option_expiry_date" class="form-control" name="option_expiry_date" value="9APR2020" >
 <?php
-$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020");
+$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020", "30JUL2020");
 $arrayLength = sizeof($expiry_select_options_list);
 for($i=0; $i<$arrayLength; $i++)
 echo "<option>".$expiry_select_options_list[$arrayLength - $i -1]."</option>";
