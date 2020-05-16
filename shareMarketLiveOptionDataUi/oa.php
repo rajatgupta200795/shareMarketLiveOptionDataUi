@@ -109,27 +109,32 @@ $(selector).append(row);
 }
 
 jQuery.each($("table tr"), function() {
-$(this).children(":eq(0)").after($(this).children(":eq(16)"));
-$(this).children(":eq(1)").after($(this).children(":eq(17)"));
-$(this).children(":eq(2)").after($(this).children(":eq(18)"));
-$(this).children(":eq(3)").after($(this).children(":eq(19)"));
-$(this).children(":eq(4)").after($(this).children(":eq(20)"));
-
+$(this).children(":eq(2)").after($(this).children(":eq(9)"));
+$(this).children(":eq(3)").after($(this).children(":eq(10)"));
+$(this).children(":eq(4)").after($(this).children(":eq(10)"));
 $(this).children(":eq(5)").after($(this).children(":eq(9)"));
 $(this).children(":eq(6)").after($(this).children(":eq(0)"));
-$(this).children(":eq(6)").after($(this).children(":eq(10)"));
+$(this).children(":eq(6)").after($(this).children(":eq(11)"));
+$(this).children(":eq(8)").after($(this).children(":eq(11)"));
 
-$(this).children(":eq(10)").after($(this).children(":eq(19)"));
-$(this).children(":eq(11)").after($(this).children(":eq(18)"));
-$(this).children(":eq(12)").after($(this).children(":eq(19)"));
+$(this).children(":eq(11)").after($(this).children(":eq(26)"));
+$(this).children(":eq(12)").after($(this).children(":eq(25)"));
+$(this).children(":eq(13)").after($(this).children(":eq(26)"));
 
-$(this).children(":eq(13)").after($(this).children(":eq(17)"));
-$(this).children(":eq(14)").after($(this).children(":eq(17)"));
-$(this).children(":eq(15)").after($(this).children(":eq(17)"));
-$(this).children(":eq(16)").after($(this).children(":eq(19)"));
+$(this).children(":eq(14)").after($(this).children(":eq(20)"));
+$(this).children(":eq(15)").after($(this).children(":eq(20)"));
+$(this).children(":eq(16)").after($(this).children(":eq(22)"));
+$(this).children(":eq(17)").after($(this).children(":eq(21)"));
+$(this).children(":eq(18)").after($(this).children(":eq(26)"));
+$(this).children(":eq(20)").after($(this).children(":eq(23)"));
 
-$(this).children(":eq(8)").after($(this).children(":eq(20)"));
-$(this).children(":eq(16)").after($(this).children(":eq(21)"));
+$(this).children(":eq(21)").after($(this).children(":eq(24)"));
+$(this).children(":eq(22)").after($(this).children(":eq(26)"));
+$(this).children(":eq(23)").after($(this).children(":eq(26)"));
+$(this).children(":eq(24)").after($(this).children(":eq(26)"));
+//
+// $(this).children(":eq(8)").after($(this).children(":eq(20)"));
+// $(this).children(":eq(16)").after($(this).children(":eq(21)"));
 
 //$(this).children(":eq(23)").after($(this).children(":eq(25)"));
 
@@ -182,8 +187,6 @@ $('table tr:eq(0) th:eq(23)').css("background-color", greek_color);
 $('table tr:eq(0) th:eq(24)').css("background-color", greek_color);
 $('table tr:eq(0) th:eq(25)').css("background-color", greek_color);
 $('table tr:eq(0) th:eq(26)').css("background-color", greek_color);
-
-
 
 $('table tr:eq(0) th:eq(0)').text("Delta");
 $('table tr:eq(0) th:eq(1)').text("Gamma");
@@ -590,7 +593,7 @@ echo "<option>".$i."</option>";
 <label for="Expiry Date">Expiry Date:</label></br>
 <select id="expiry_date" class="form-control" name="expiry_date" value="9APR2020" >
 <?php
-$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020");
+$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020", "30JUL2020");
 $arrayLength = sizeof($expiry_select_options_list);
 for($i=0; $i<$arrayLength; $i++)
 echo "<option>".$expiry_select_options_list[$arrayLength - $i -1]."</option>";
@@ -623,7 +626,7 @@ echo"</select>";
 <label for="Expiry Date">Expiry Date:</label></br>
 <select id="option_expiry_date" class="form-control" name="option_expiry_date" value="9APR2020" >
 <?php
-$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020");
+$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020", "30JUL2020");
 $arrayLength = sizeof($expiry_select_options_list);
 for($i=0; $i<$arrayLength; $i++)
 echo "<option>".$expiry_select_options_list[$arrayLength - $i -1]."</option>";

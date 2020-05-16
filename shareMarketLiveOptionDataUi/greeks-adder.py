@@ -80,11 +80,5 @@ for element in json_object:
      dist.append(element)
 
     
-print(json.dumps(dist))
- 
+print(json.dumps(dist, sort_keys=True))
 
-#import json
-#f = open('resultData.json')
-#data = json.load(f)
-#print(data)
-#f.close()

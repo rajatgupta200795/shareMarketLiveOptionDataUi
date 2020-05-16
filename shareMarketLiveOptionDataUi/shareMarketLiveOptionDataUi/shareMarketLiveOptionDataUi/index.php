@@ -57,6 +57,7 @@ $("#created_link_text").html(list);
 });
 });
 
+
 function getOptionSheetData(expiry_date, created){
 
 $.get("get-requested-option-data.php?expiry_date="+expiry_date+"&created="+created, function(data){
@@ -66,6 +67,7 @@ document.getElementById("table").innerHTML = "";
 constructTable(JSON.parse(data));
 });
 }
+
 //////////////////////////////////////////////////////////////////////////
 
 $(document).ready(function(){
@@ -75,6 +77,7 @@ document.getElementById("created_link_text").innerHTML = "";
 
 document.getElementById("table").removeAttribute("class");
 document.getElementById("table").setAttribute("class", "tableStrike");
+
 
 var strike_price = document.getElementById("strike_price").value;
 var expiry_date = document.getElementById("expiry_date").value;
@@ -109,43 +112,38 @@ $(selector).append(row);
 }
 
 jQuery.each($("table tr"), function() {
-$(this).children(":eq(2)").after($(this).children(":eq(9)"));
-$(this).children(":eq(3)").after($(this).children(":eq(10)"));
-$(this).children(":eq(4)").after($(this).children(":eq(10)"));
+$(this).children(":eq(0)").after($(this).children(":eq(16)"));
+$(this).children(":eq(1)").after($(this).children(":eq(17)"));
+$(this).children(":eq(2)").after($(this).children(":eq(18)"));
+$(this).children(":eq(3)").after($(this).children(":eq(19)"));
+$(this).children(":eq(4)").after($(this).children(":eq(20)"));
+
 $(this).children(":eq(5)").after($(this).children(":eq(9)"));
 $(this).children(":eq(6)").after($(this).children(":eq(0)"));
-$(this).children(":eq(6)").after($(this).children(":eq(11)"));
-$(this).children(":eq(8)").after($(this).children(":eq(11)"));
+$(this).children(":eq(6)").after($(this).children(":eq(10)"));
 
-$(this).children(":eq(11)").after($(this).children(":eq(26)"));
-$(this).children(":eq(12)").after($(this).children(":eq(25)"));
-$(this).children(":eq(13)").after($(this).children(":eq(26)"));
+$(this).children(":eq(10)").after($(this).children(":eq(19)"));
+$(this).children(":eq(11)").after($(this).children(":eq(18)"));
+$(this).children(":eq(12)").after($(this).children(":eq(19)"));
 
-$(this).children(":eq(14)").after($(this).children(":eq(20)"));
-$(this).children(":eq(15)").after($(this).children(":eq(20)"));
-$(this).children(":eq(16)").after($(this).children(":eq(22)"));
-$(this).children(":eq(17)").after($(this).children(":eq(21)"));
-$(this).children(":eq(18)").after($(this).children(":eq(26)"));
-$(this).children(":eq(20)").after($(this).children(":eq(23)"));
+$(this).children(":eq(13)").after($(this).children(":eq(17)"));
+$(this).children(":eq(14)").after($(this).children(":eq(17)"));
+$(this).children(":eq(15)").after($(this).children(":eq(17)"));
+$(this).children(":eq(16)").after($(this).children(":eq(19)"));
 
-$(this).children(":eq(21)").after($(this).children(":eq(24)"));
-$(this).children(":eq(22)").after($(this).children(":eq(26)"));
-$(this).children(":eq(23)").after($(this).children(":eq(26)"));
-$(this).children(":eq(24)").after($(this).children(":eq(26)"));
-//
-// $(this).children(":eq(8)").after($(this).children(":eq(20)"));
-// $(this).children(":eq(16)").after($(this).children(":eq(21)"));
+$(this).children(":eq(8)").after($(this).children(":eq(20)"));
+$(this).children(":eq(16)").after($(this).children(":eq(21)"));
 
 //$(this).children(":eq(23)").after($(this).children(":eq(25)"));
 
 
 $(this).children("td:eq(10)").css("color", "#3a3d7d");
 $(this).children("td:eq(12)").css("color", "#080f2bf5");
-$(this).children("td:eq(13)").css("color", "#3a3d7d"); // #2e7b7bf5
+$(this).children("td:eq(13)").css("color", "#2e7b7bf5");
 $(this).children("td:eq(14)").css("color", "#3a3d7d");
 $(this).children("td:eq(16)").css("color", "#3a3d7d");
 
-var greek_background = "#d9e4e4fa" // "#f5fffa"
+var greek_background = "#f5fffa"
 $(this).children("td:eq(0)").css("background-color", greek_background);
 $(this).children("td:eq(1)").css("background-color", greek_background);
 $(this).children("td:eq(2)").css("background-color", greek_background);
@@ -158,22 +156,14 @@ $(this).children("td:eq(24)").css("background-color", greek_background);
 $(this).children("td:eq(25)").css("background-color", greek_background);
 $(this).children("td:eq(26)").css("background-color", greek_background);
 
-var mid_background_color = "#d9e4e4fa"  //"#e7e3d5"
-$(this).children("td:eq(12)").css("background-color", mid_background_color);
-$(this).children("td:eq(13)").css("background-color", mid_background_color);
-$(this).children("td:eq(14)").css("background-color", mid_background_color);
+$(this).children("td:eq(12)").css("background-color", "#e7e3d5");
+$(this).children("td:eq(13)").css("background-color", "#e7e3d5");
+$(this).children("td:eq(14)").css("background-color", "#e7e3d5");
 
-$(this).children("td:eq(0)").css("text-align", "center");
-$(this).children("td:eq(1)").css("text-align", "center");
-$(this).children("td:eq(2)").css("text-align", "center");
-$(this).children("td:eq(3)").css("text-align", "center");
 $(this).children("td:eq(12)").css("text-align", "center");
 $(this).children("td:eq(13)").css("text-align", "center");
 $(this).children("td:eq(14)").css("text-align", "center");
-$(this).children("td:eq(23)").css("text-align", "center");
-$(this).children("td:eq(24)").css("text-align", "center");
-$(this).children("td:eq(25)").css("text-align", "center");
-$(this).children("td:eq(26)").css("text-align", "center");
+
 });
 
 var greek_color = "#e0e0e0";
@@ -187,6 +177,8 @@ $('table tr:eq(0) th:eq(23)').css("background-color", greek_color);
 $('table tr:eq(0) th:eq(24)').css("background-color", greek_color);
 $('table tr:eq(0) th:eq(25)').css("background-color", greek_color);
 $('table tr:eq(0) th:eq(26)').css("background-color", greek_color);
+
+
 
 $('table tr:eq(0) th:eq(0)').text("Delta");
 $('table tr:eq(0) th:eq(1)').text("Gamma");
@@ -239,6 +231,8 @@ $(this).children(":eq(20)").text(numberWithCommas(num14));
 });
 });
 
+
+
 $(document).ready(function() {
 $( "table tr").each(function(){
 var value1 = parseFloat( $(this).children("td:eq(5)").text() );
@@ -276,230 +270,18 @@ $( this ).children(":eq(19)").css('color', 'green');
 });
 });
 
+
 $('table tr').find('td:eq(4),th:eq(4)').remove();
 $('table tr').find('td:eq(21),th:eq(21)').remove();
+
+
 
 $( "td").attr("width","100");
 $('th').css('text-align', 'center');
 $('tr').css('text-align', 'right');
 //document.getElementById("downloadFileId").innerHTML = "Download CSV File";
 //document.getElementById("downloadFileId").href = "/csvFiles/"+tag+".csv";
-
-
-
-// document.getElementById("test1").innerHTML = ce_oi;
-//document.getElementById("test2").innerHTML = time;
-//document.getElementById("test3").innerHTML = pe_oi;
-
-///////////////////////////                         /////////////////////////////
-
-var optionClassName = document.getElementById("sheet_form").className;
-if(optionClassName != "hidden")
-optionBarGraph();
-else
-strikeBarGraph();
-
-
-function strikeBarGraph(){
-var ce_oi = [];
-var ce_change_oi = [];
-var pe_oi = [];
-var pe_change_oi = [];
-var time = [];
-$("#table tr").each(function(){
-ce_oi.push($(this).find("td:eq(4)").text());
-ce_change_oi.push($(this).find("td:eq(5)").text());
-time.push($(this).find("td:eq(11)").text());
-pe_change_oi.push($(this).find("td:eq(19)").text());
-pe_oi.push($(this).find("td:eq(20)").text());
-});
-
-a = time
-b = ce_oi
-c = pe_oi
-
-var limit = a.length;
-var data = [];
-
-data1 ={
-type: "spline",
-name: "OI in CE",
-showInLegend: true,
 }
-
-data2 ={
-type: "spline",
-name: "OI in PE",
-showInLegend: true,
-}
-
-var dataPoints = [];
-for (var i = 1; i < limit; i += 1) {
-//dateStr = '1970-01-01T' + a[i].slice(0, 2) + ":" + a[i].slice(2) + ":00.000+05:30";
-//var dateStr = 'Thu, 01 Jan 1970 '+a[i].slice(0, 2) + ":" + a[i].slice(2)+':00 GMT+0530';
-// xVal = Date.parse(dateStr);
-// document.write(dateStr+"="+xVal+" ")
-xVal = parseInt(a[i]);
-dataPoints.push({
-x: xVal,
-y: parseInt(b[i])
-});
-}
-data1.dataPoints = dataPoints;
-
-var dataPoints = [];
-for (var i = 0; i < limit; i += 1) {
-xVal = parseInt(a[i]);
-dataPoints.push({
-x: xVal,
-y: parseInt(c[i])
-});
-}
-data2.dataPoints = dataPoints;
-
-data.push(data1)
-data.push(data2)
-
-var chart = new CanvasJS.Chart("chartContainer", {
-animationEnabled: true,
-zoomEnabled: true,
-title:{
-text: "Change in OI at CE and PE with Time"
-},
-axisX: {
-title: "Time"
-},
-axisY :{
-title: "Change in OI"
-//includeZero:false
-},
-toolTip: {
-shared: true
-},
-legend:{
-cursor:"pointer",
-itemclick: toggleDataSeries
-},
-data: data
-});
-chart.render();
-
-function toggleDataSeries(e) {
-	if(typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-		e.dataSeries.visible = false;
-	}
-	else {
-		e.dataSeries.visible = true;
-	}
-	chart.render();
-}
-}
-
-//////////////////////////////////////////////////////////////////
-
-function optionBarGraph(){
-var ce_oi = [];
-var ce_change_oi = [];
-var pe_oi = [];
-var pe_change_oi = [];
-var strike = [];
-$("#table tr").each(function(){
-ce_oi.push($(this).find("td:eq(4)").text());
-ce_change_oi.push($(this).find("td:eq(5)").text());
-strike.push($(this).find("td:eq(13)").text());
-pe_change_oi.push($(this).find("td:eq(19)").text());
-pe_oi.push($(this).find("td:eq(20)").text());
-});
-
-limit = strike.length
-start = 20
-end = limit-11
-a = strike.slice(start, end)
-b = ce_oi.slice(start, end)
-c = pe_oi.slice(start, end)
-
-var data = [];
-
-data1 = {
-type: "column",
-name: "CE Open Intrest",
-legendText: "CE Open Intrest",
-showInLegend: true,
-};
-
-data2 =	{
-type: "column",
-name: "PE Open Interest",
-legendText: "PE Open Interest",
-// axisYType: "secondary",
-showInLegend: true,
-};
-
-var dataPoints = [];
-for (var i = 0; i < limit; i += 1) {
-dataPoints.push({
-x: parseInt(a[i]),
-y: parseInt(b[i])
-});
-}
-data1.dataPoints = dataPoints;
-
-var dataPoints = [];
-for (var i = 0; i < limit; i += 1) {
-dataPoints.push({
-x: parseInt(a[i]),
-y: parseInt(c[i])
-});
-}
-data2.dataPoints = dataPoints;
-
-data.push(data1)
-data.push(data2)
-
-var chart = new CanvasJS.Chart("chartContainer", {
-animationEnabled: true,
-title:{
-text: "CE and PE position on bar chart"
-},
-axisY: {
-title: "CE and PE Open Interest",
-titleFontColor: "#000",
-lineColor: "#000",
-labelFontColor: "#000",
-tickColor: "#000"
-},
-axisY2: {
-title: "PE Open Interest",
-titleFontColor: "#C0504E",
-lineColor: "#C0504E",
-labelFontColor: "#C0504E",
-tickColor: "#C0504E"
-},
-toolTip: {
-shared: true
-},
-legend: {
-cursor:"pointer",
-itemclick: toggleDataSeries
-},
-data: data
-});
-chart.render();
-
-function toggleDataSeries(e) {
-if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-e.dataSeries.visible = false;
-}
-else {
-e.dataSeries.visible = true;
-}
-chart.render();
-}
-} //// optionBarGraph bracket end
-
-/////////////////////////                        //////////////////////////////////
-}
-
 
 function Headers(list, selector) {
 var columns = [];
@@ -523,8 +305,6 @@ return columns;
 function display() {
 if(document.getElementById('select_strike_price').checked) {
 document.getElementById("table").innerHTML = "";
-document.getElementById("chartContainer").innerHTML = '';
-
 document.getElementById("created_link_text").innerHTML = "";
 document.getElementById("strike_form").className = 'unhide';
 document.getElementById("sheet_form").className = 'hidden';
@@ -532,27 +312,22 @@ document.getElementById("sheet_form").className = 'hidden';
 }
 else if(document.getElementById('select_option_sheet').checked) {
 document.getElementById("table").innerHTML = "";
-document.getElementById("chartContainer").innerHTML = '';
 
 document.getElementById("sheet_form").className = 'unhide';
 document.getElementById("strike_form").className = 'hidden';
+//document.write("test2");
 }
 }
 
 function hideTableOnSelectOption(){
 document.getElementById("table").innerHTML = "";
 document.getElementById("created_link_text").innerHTML = "";
-document.getElementById("chartContainer").innerHTML = '';
 }
 
 </script>
 
 </head>
 <body class="unselectable" style="font-family: Arial, Helvetica, sans-serif;">
-
-<!--<div id="test1">test1</div>
-<div id="test2">test2</div>
-<div id="test3">test3</div>-->
 
 <?php
 
@@ -582,22 +357,15 @@ width="300" height="40" style="border: 0; overflow: hidden;" ></iframe>
 <div class="form-row">
 <div class="form-group col-md-3">
 <label for="Strike Price">Strike Price:</label></br>
-<select id="strike_price" class="form-control" name="strike_price">
-<?php
-for($i=7000; $i<11000; $i=$i+50)
-echo "<option>".$i."</option>";
-?>
-</select>
+<input  type="number" id="strike_price" class="form-control" name="strike_price" value="9500" placeholder="Strike Price" required>
 </div>
 <div class="form-group col-md-3">
 <label for="Expiry Date">Expiry Date:</label></br>
 <select id="expiry_date" class="form-control" name="expiry_date" value="9APR2020" >
 <?php
-$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020", "30JUL2020");
-$arrayLength = sizeof($expiry_select_options_list);
-for($i=0; $i<$arrayLength; $i++)
-echo "<option>".$expiry_select_options_list[$arrayLength - $i -1]."</option>";
-?>
+$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020");
+for($i=0; $i<sizeof($expiry_select_options_list); $i++)
+echo "<option>".$expiry_select_options_list[$i]."</option>";
 ?>
 </select>
 </div>
@@ -626,10 +394,9 @@ echo"</select>";
 <label for="Expiry Date">Expiry Date:</label></br>
 <select id="option_expiry_date" class="form-control" name="option_expiry_date" value="9APR2020" >
 <?php
-$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020", "30JUL2020");
-$arrayLength = sizeof($expiry_select_options_list);
-for($i=0; $i<$arrayLength; $i++)
-echo "<option>".$expiry_select_options_list[$arrayLength - $i -1]."</option>";
+$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020");
+for($i=0; $i<sizeof($expiry_select_options_list); $i++)
+echo "<option>".$expiry_select_options_list[$i]."</option>";
 ?>
 </select>
 </div>
@@ -701,12 +468,6 @@ table {
 </style>
 
 <div class="sticky"><div id="created_link_text" style="padding: 5px; background-color: white;"></div></div>
-</br>
-
-
-</br>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </br>
 
 <table style="font-size:14px; border-color: #aca99f; border-spacing: 5px;" id="table" class="tableOption" border="1px"></table>
