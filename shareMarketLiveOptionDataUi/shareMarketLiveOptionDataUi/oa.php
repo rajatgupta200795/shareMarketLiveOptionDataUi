@@ -58,7 +58,8 @@ $("#created_link_text").html(list);
 });
 
 function getOptionSheetData(expiry_date, created){
-
+document.getElementById("chartContainer").innerHTML = "";
+document.getElementById("table").innerHTML = "";
 $.get("get-requested-option-data.php?expiry_date="+expiry_date+"&created="+created, function(data){
 var list = data;
 // document.write(list)
@@ -72,6 +73,8 @@ $(document).ready(function(){
 $("#strike_button").click(function(){
 
 document.getElementById("created_link_text").innerHTML = "";
+document.getElementById("chartContainer").innerHTML = "";
+document.getElementById("table").innerHTML = "";
 
 document.getElementById("table").removeAttribute("class");
 document.getElementById("table").setAttribute("class", "tableStrike");
