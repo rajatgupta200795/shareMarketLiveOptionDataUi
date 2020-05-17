@@ -402,7 +402,6 @@ var data = [];
 
 data1 ={
 type: "spline",
-color: "green",
 name: "OI Change in CE",
 showInLegend: true,
 }
@@ -584,7 +583,6 @@ var data = [];
 data1 = {
 type: "column",
 name: "CE Change in OI",
-color: "green",
 legendText: "CE Change in OI",
 showInLegend: true,
 };
