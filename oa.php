@@ -58,7 +58,8 @@ $("#created_link_text").html(list);
 });
 
 function getOptionSheetData(expiry_date, created){
-document.getElementById("chartContainer").innerHTML = "";
+document.getElementById("oiChartContainer").innerHTML = "";
+document.getElementById("oiChangeChartContainer").innerHTML = "";
 document.getElementById("table").innerHTML = "";
 $.get("get-requested-option-data.php?expiry_date="+expiry_date+"&created="+created, function(data){
 var list = data;
@@ -73,7 +74,8 @@ $(document).ready(function(){
 $("#strike_button").click(function(){
 
 document.getElementById("created_link_text").innerHTML = "";
-document.getElementById("chartContainer").innerHTML = "";
+document.getElementById("oiChartContainer").innerHTML = "";
+document.getElementById("oiChangeChartContainer").innerHTML = "";
 document.getElementById("table").innerHTML = "";
 
 document.getElementById("table").removeAttribute("class");
@@ -320,6 +322,7 @@ pe_oi.push($(this).find("td:eq(20)").text());
 a = time
 b = ce_oi
 c = pe_oi
+titleFontSize = 17
 
 var limit = a.length;
 var data = [];
@@ -363,17 +366,18 @@ data2.dataPoints = dataPoints;
 data.push(data1)
 data.push(data2)
 
-var chart = new CanvasJS.Chart("chartContainer", {
+var chart = new CanvasJS.Chart("oiChartContainer", {
 animationEnabled: true,
 zoomEnabled: true,
 title:{
+fontSize: titleFontSize,
 text: "Change in OI at CE and PE with Time"
 },
 axisX: {
 title: "Time"
 },
 axisY :{
-title: "Change in OI"
+title: "Change in Open Interest"
 //includeZero:false
 },
 toolTip: {
@@ -386,6 +390,83 @@ itemclick: toggleDataSeries
 data: data
 });
 chart.render();
+
+///////////////////////////////////// change in OI start in strike section
+
+a = time
+b = ce_change_oi
+c = pe_change_oi
+
+var limit = a.length;
+var data = [];
+
+data1 ={
+type: "spline",
+color: "green",
+name: "OI Change in CE",
+showInLegend: true,
+}
+
+data2 ={
+type: "spline",
+name: "OI Change in PE",
+showInLegend: true,
+}
+
+var dataPoints = [];
+for (var i = 1; i < limit; i += 1) {
+//dateStr = '1970-01-01T' + a[i].slice(0, 2) + ":" + a[i].slice(2) + ":00.000+05:30";
+//var dateStr = 'Thu, 01 Jan 1970 '+a[i].slice(0, 2) + ":" + a[i].slice(2)+':00 GMT+0530';
+// xVal = Date.parse(dateStr);
+// document.write(dateStr+"="+xVal+" ")
+xVal = parseInt(a[i]);
+dataPoints.push({
+x: xVal,
+y: parseInt(b[i])
+});
+}
+data1.dataPoints = dataPoints;
+
+var dataPoints = [];
+for (var i = 0; i < limit; i += 1) {
+xVal = parseInt(a[i]);
+dataPoints.push({
+x: xVal,
+y: parseInt(c[i])
+});
+}
+data2.dataPoints = dataPoints;
+
+data.push(data1)
+data.push(data2)
+
+var chart = new CanvasJS.Chart("oiChangeChartContainer", {
+animationEnabled: true,
+zoomEnabled: true,
+title:{
+fontSize: titleFontSize,
+text: "OI Change with Time"
+},
+axisX: {
+title: "Time"
+},
+axisY :{
+title: "OI Change"
+//includeZero:false
+},
+toolTip: {
+shared: true
+},
+legend:{
+cursor:"pointer",
+itemclick: toggleDataSeries
+},
+data: data
+});
+chart.render();
+
+/////////////////////////////////////////////// change in oi in strike section closed
+
 
 function toggleDataSeries(e) {
 	if(typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -420,13 +501,14 @@ end = limit-11
 a = strike.slice(start, end)
 b = ce_oi.slice(start, end)
 c = pe_oi.slice(start, end)
+titleFontSize = 17
 
 var data = [];
 
 data1 = {
 type: "column",
-name: "CE Open Intrest",
-legendText: "CE Open Intrest",
+name: "CE Open Interest",
+legendText: "CE Open Interest",
 showInLegend: true,
 };
 
@@ -459,13 +541,14 @@ data2.dataPoints = dataPoints;
 data.push(data1)
 data.push(data2)
 
-var chart = new CanvasJS.Chart("chartContainer", {
+var chart = new CanvasJS.Chart("oiChartContainer", {
 animationEnabled: true,
 title:{
-text: "CE and PE position on bar chart"
+fontSize: titleFontSize,
+text: "Open Interest Positions"
 },
 axisY: {
-title: "CE and PE Open Interest",
+title: "Open Interest",
 titleFontColor: "#000",
 lineColor: "#000",
 labelFontColor: "#000",
@@ -488,6 +571,86 @@ itemclick: toggleDataSeries
 data: data
 });
 chart.render();
+
+////////////////////////////////////// change in OI
+
+limit = strike.length
+a = strike.slice(start, end)
+b = ce_change_oi.slice(start, end)
+c = pe_change_oi.slice(start, end)
+
+var data = [];
+
+data1 = {
+type: "column",
+name: "CE Change in OI",
+color: "green",
+legendText: "CE Change in OI",
+showInLegend: true,
+};
+
+data2 =	{
+type: "column",
+name: "PE Change in OI",
+legendText: "PE Change in OI",
+// axisYType: "secondary",
+showInLegend: true,
+};
+
+var dataPoints = [];
+for (var i = 0; i < limit; i += 1) {
+dataPoints.push({
+x: parseInt(a[i]),
+y: parseInt(b[i])
+});
+}
+data1.dataPoints = dataPoints;
+
+var dataPoints = [];
+for (var i = 0; i < limit; i += 1) {
+dataPoints.push({
+x: parseInt(a[i]),
+y: parseInt(c[i])
+});
+}
+data2.dataPoints = dataPoints;
+
+data.push(data1)
+data.push(data2)
+
+var chart = new CanvasJS.Chart("oiChangeChartContainer", {
+animationEnabled: true,
+title:{
+fontSize: titleFontSize,
+text: "Change in Open Interest"
+},
+axisY: {
+title: "OI Change",
+titleFontColor: "#000",
+lineColor: "#000",
+labelFontColor: "#000",
+tickColor: "#000"
+},
+axisY2: {
+title: "PE OI Change",
+titleFontColor: "#C0504E",
+lineColor: "#C0504E",
+labelFontColor: "#C0504E",
+tickColor: "#C0504E"
+},
+toolTip: {
+shared: true
+},
+legend: {
+cursor:"pointer",
+itemclick: toggleDataSeries
+},
+data: data
+});
+chart.render();
+
+
+/////////////////////////////////// change in oi code closed
 
 function toggleDataSeries(e) {
 if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -526,7 +689,8 @@ return columns;
 function display() {
 if(document.getElementById('select_strike_price').checked) {
 document.getElementById("table").innerHTML = "";
-document.getElementById("chartContainer").innerHTML = '';
+document.getElementById("oiChartContainer").innerHTML = '';
+document.getElementById("oiChangeChartContainer").innerHTML = '';
 
 document.getElementById("created_link_text").innerHTML = "";
 document.getElementById("strike_form").className = 'unhide';
@@ -535,7 +699,8 @@ document.getElementById("sheet_form").className = 'hidden';
 }
 else if(document.getElementById('select_option_sheet').checked) {
 document.getElementById("table").innerHTML = "";
-document.getElementById("chartContainer").innerHTML = '';
+document.getElementById("oiChartContainer").innerHTML = '';
+document.getElementById("oiChangeChartContainer").innerHTML = '';
 
 document.getElementById("sheet_form").className = 'unhide';
 document.getElementById("strike_form").className = 'hidden';
@@ -545,7 +710,8 @@ document.getElementById("strike_form").className = 'hidden';
 function hideTableOnSelectOption(){
 document.getElementById("table").innerHTML = "";
 document.getElementById("created_link_text").innerHTML = "";
-document.getElementById("chartContainer").innerHTML = '';
+document.getElementById("oiChartContainer").innerHTML = '';
+document.getElementById("oiChangeChartContainer").innerHTML = '';
 }
 
 </script>
@@ -570,8 +736,8 @@ $all_dates = explode(',', $all_dates);
 ?>
 
 <div class="container">
-<h2>Option Chain Data</h2>
-<p>Enjoy free Nifty option chain data recording for all expiry with historical data.</p>
+<h2>Nifty Option Data Analysis</h2>
+<p>Enjoy free Nifty option data recording for all expiry with graphs and historical data.</p>
 
 <iframe src="https://platform.twitter.com/widgets/follow_button.html?screen_name=rajatgupta207&show_screen_name=false&show_count=true&size=l" title="Follow Rajat Gupta on Twitter"
 width="300" height="40" style="border: 0; overflow: hidden;" ></iframe>
@@ -706,9 +872,10 @@ table {
 <div class="sticky"><div id="created_link_text" style="padding: 5px; background-color: white;"></div></div>
 </br>
 
-
+<div id="oiChartContainer" style="height: 320px; width: 100%;"></div>
 </br>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<div id="oiChangeChartContainer" style="height: 320px; width: 100%;"></div>
+
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </br>
 
