@@ -39,7 +39,7 @@ setTimeout(
 function() {
 document.getElementById("creatingFile").className = "hidden";
 document.getElementById("downloadFile").className = "unhide";
-}, 1000);
+}, 15000);
 
 <?php
 $firstValue = @$_POST['firstValue'];
