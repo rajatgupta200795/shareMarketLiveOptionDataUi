@@ -30,7 +30,6 @@ var tag;
 $(document).ready(function(){
 $("#option_button").click(function(){
 document.getElementById("created_link_text").innerHTML = "";
-document.getElementById("downloadFileId").innerHTML = "";
 document.getElementById("table").removeAttribute("class");
 document.getElementById("table").setAttribute("class", "tableOption");
 
@@ -59,9 +58,7 @@ $("#created_link_text").html(list);
 });
 
 function getOptionSheetData(expiry_date, created){
-document.getElementById("tempCreatedVar").innerHTML = created;
 document.getElementById("oiChartContainer").innerHTML = "";
-document.getElementById("downloadFileId").innerHTML = "";
 document.getElementById("oiChangeChartContainer").innerHTML = "";
 document.getElementById("table").innerHTML = "";
 $.get("get-requested-option-data.php?expiry_date="+expiry_date+"&created="+created, function(data){
@@ -69,14 +66,13 @@ var list = data;
 // document.write(list)
 document.getElementById("table").innerHTML = "";
 constructTable(JSON.parse(data));
-document.getElementById("downloadFileId").innerHTML = "Download CSV File";
 });
 }
 //////////////////////////////////////////////////////////////////////////
 
 $(document).ready(function(){
 $("#strike_button").click(function(){
-document.getElementById("downloadFileId").innerHTML = "";
+
 document.getElementById("created_link_text").innerHTML = "";
 document.getElementById("oiChartContainer").innerHTML = "";
 document.getElementById("oiChangeChartContainer").innerHTML = "";
@@ -199,8 +195,8 @@ $('table tr:eq(0) th:eq(26)').css("background-color", greek_color);
 
 $('table tr:eq(0) th:eq(0)').text("Delta");
 $('table tr:eq(0) th:eq(1)').text("Gamma");
-$('table tr:eq(0) th:eq(2)').text("Theta");
-$('table tr:eq(0) th:eq(3)').text("Vega");
+$('table tr:eq(0) th:eq(2)').text("Vega");
+$('table tr:eq(0) th:eq(3)').text("Theta");
 $('table tr:eq(0) th:eq(4)').text("Rho");
 $('table tr:eq(0) th:eq(5)').text("OI");
 $('table tr:eq(0) th:eq(6)').text(" Change in OI");
@@ -220,8 +216,8 @@ $('table tr:eq(0) th:eq(19)').text("Volume");
 $('table tr:eq(0) th:eq(20)').text("Change in OI");
 $('table tr:eq(0) th:eq(21)').text(" OI ");
 $('table tr:eq(0) th:eq(22)').text("Rho");
-$('table tr:eq(0) th:eq(23)').text("Vega");
-$('table tr:eq(0) th:eq(24)').text("Theta");
+$('table tr:eq(0) th:eq(23)').text("Theta");
+$('table tr:eq(0) th:eq(24)').text("Vega");
 $('table tr:eq(0) th:eq(25)').text("Gamma");
 $('table tr:eq(0) th:eq(26)').text("Delta");
 
@@ -291,8 +287,10 @@ $('table tr').find('td:eq(21),th:eq(21)').remove();
 $( "td").attr("width","100");
 $('th').css('text-align', 'center');
 $('tr').css('text-align', 'right');
+//document.getElementById("downloadFileId").innerHTML = "Download CSV File";
+//document.getElementById("downloadFileId").href = "/csvFiles/"+tag+".csv";
 
-//document.getElementById("downloadFileId").href =  "download-option-chain-data.php"; //"/csvFiles/"+tag+".csv";
+
 
 // document.getElementById("test1").innerHTML = ce_oi;
 //document.getElementById("test2").innerHTML = time;
@@ -373,13 +371,13 @@ animationEnabled: true,
 zoomEnabled: true,
 title:{
 fontSize: titleFontSize,
-text: "Open Interest with Time"
+text: "Change in OI at CE and PE with Time"
 },
 axisX: {
 title: "Time"
 },
 axisY :{
-title: "Open Interest"
+title: "Change in Open Interest"
 //includeZero:false
 },
 toolTip: {
@@ -449,7 +447,7 @@ fontSize: titleFontSize,
 text: "OI Change with Time"
 },
 axisX: {
-title: "Time",
+title: "Time"
 },
 axisY :{
 title: "OI Change"
@@ -548,9 +546,6 @@ title:{
 fontSize: titleFontSize,
 text: "Open Interest Positions"
 },
-axisX: {
-interval: 200
-},
 axisY: {
 title: "Open Interest",
 titleFontColor: "#000",
@@ -627,9 +622,6 @@ title:{
 fontSize: titleFontSize,
 text: "Change in Open Interest"
 },
-axisX: {
-interval: 200
-},
 axisY: {
 title: "OI Change",
 titleFontColor: "#000",
@@ -695,7 +687,6 @@ return columns;
 function display() {
 if(document.getElementById('select_strike_price').checked) {
 document.getElementById("table").innerHTML = "";
-document.getElementById("downloadFileId").innerHTML = "";
 document.getElementById("oiChartContainer").innerHTML = '';
 document.getElementById("oiChangeChartContainer").innerHTML = '';
 
@@ -715,7 +706,6 @@ document.getElementById("strike_form").className = 'hidden';
 }
 
 function hideTableOnSelectOption(){
-document.getElementById("downloadFileId").innerHTML = "";
 document.getElementById("table").innerHTML = "";
 document.getElementById("created_link_text").innerHTML = "";
 document.getElementById("oiChartContainer").innerHTML = '';
@@ -727,11 +717,9 @@ document.getElementById("oiChangeChartContainer").innerHTML = '';
 </head>
 <body class="unselectable" style="font-family: Arial, Helvetica, sans-serif;">
 
-<form id="downloadFileForm" action="download-option-chain-data.php" method="post">
-<input type="hidden" name="firstValue" value="">
-<input type="hidden" name="secondValue" value="">
-<input type="hidden" name="thirdValue" value="">
-</form>
+<!--<div id="test1">test1</div>
+<div id="test2">test2</div>
+<div id="test3">test3</div>-->
 
 <?php
 
@@ -739,10 +727,10 @@ $all_dates = shell_exec("sudo /var/www/html/all-dates-query-executer.sh");
 $all_dates = str_replace('[', '', $all_dates);
 $all_dates = str_replace(']', '', $all_dates);
 $all_dates = explode(',', $all_dates);
-
-$expiry_select_options_list = shell_exec("sudo tac /var/www/html/all-expiry-list.txt");
-$expiry_select_options_list = preg_split ('/$\R?^/m', $expiry_select_options_list); //preg_split("/\r\n|\n|\r/", $expiry_select_options_list); //explode('\n', $expiry_select_options_list);
-
+// echo"<select">;
+// foreach($all_dates as $k => $v)
+// echo "<option>".str_replace('"', '', $v)."</option>";
+// echo"</select">;
 ?>
 
 <div class="container">
@@ -772,8 +760,11 @@ echo "<option>".$i."</option>";
 <label for="Expiry Date">Expiry Date:</label></br>
 <select id="expiry_date" class="form-control" name="expiry_date" value="9APR2020" >
 <?php
-foreach($expiry_select_options_list as $k => $v)
-echo "<option>".str_replace('"', '', $v)."</option>";
+$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020", "30JUL2020");
+$arrayLength = sizeof($expiry_select_options_list);
+for($i=0; $i<$arrayLength; $i++)
+echo "<option>".$expiry_select_options_list[$arrayLength - $i -1]."</option>";
+?>
 ?>
 </select>
 </div>
@@ -802,8 +793,10 @@ echo"</select>";
 <label for="Expiry Date">Expiry Date:</label></br>
 <select id="option_expiry_date" class="form-control" name="option_expiry_date" value="9APR2020" >
 <?php
-foreach($expiry_select_options_list as $k => $v)
-echo "<option>".str_replace('"', '', $v)."</option>";
+$expiry_select_options_list = array("1APR2020", "9APR2020", "16APR2020", "23APR2020", "30APR2020", "7MAY2020", "14MAY2020", "21MAY2020", "28MAY2020", "25JUN2020", "30JUL2020");
+$arrayLength = sizeof($expiry_select_options_list);
+for($i=0; $i<$arrayLength; $i++)
+echo "<option>".$expiry_select_options_list[$arrayLength - $i -1]."</option>";
 ?>
 </select>
 </div>
@@ -843,6 +836,7 @@ echo"</select>";
 </form>
 
 <br><br>
+<div style="text-align:right;"><a href="" id="downloadFileId"></a></div>
 <br>
 </div>
 
@@ -876,50 +870,17 @@ table {
 <div class="sticky"><div id="created_link_text" style="padding: 5px; background-color: white;"></div></div>
 </br>
 
-</br>
-
-<div class="row">
-<div class="col-sm-6">
 <div id="oiChartContainer" style="height: 320px; width: 100%;"></div>
-<hr>
-</div>
-<div class="col-sm-6">
+</br>
 <div id="oiChangeChartContainer" style="height: 320px; width: 100%;"></div>
-<hr>
-</div>
-</div>
-
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </br>
 
-<div style="text-align:left; font-size:17px;"><a id="downloadFileId" style="color:red; cursor: pointer; text-decoration: none;" onclick=submitDownloadFileForm()></a></div>
-</br>
 <table style="font-size:14px; border-color: #aca99f; border-spacing: 5px;" id="table" class="tableOption" border="1px"></table>
 </div>
 
 <br><br>
-
-<div class="hidden" id="tempCreatedVar"></div>
-
-<script>
-
-function submitDownloadFileForm(){
-var optionClassName = document.getElementById("sheet_form").className;
-firstValue =  document.getElementById("option_expiry_date")
-createdVar = document.getElementById("tempCreatedVar").innerHTML;
-//document.write(createdVar);
-secondValue = createdVar;
-thirdValue = "";
-
-formObject = document.getElementById("downloadFileForm");
-formObject[0].value = firstValue.value;
-formObject[1].value = secondValue;
-formObject[2].value = thirdValue.value;
-formObject.submit();
-}
-
-</script>
 
 </body>
 </html>

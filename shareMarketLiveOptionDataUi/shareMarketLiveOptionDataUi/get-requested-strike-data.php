@@ -10,10 +10,10 @@ $tag = $_REQUEST["tag"];
 
 $result = "";
 
- if ($strike_price !== "" && $expiry_date !== "") {
-    //$result = shell_exec("query-executer.sh'".$strike_price."' '".$expiry_date."'");
-    $result = shell_exec("sudo /var/www/html/query-executer.sh ".$strike_price." ".$expiry_date." ".$tag." ".$req_date);
- }
+if ($strike_price !== "" && $expiry_date !== "") {
+//$result = shell_exec("query-executer.sh'".$strike_price."' '".$expiry_date."'");
+$result = shell_exec("sudo /var/www/html/query-executer.sh ".$strike_price." ".$expiry_date." ".$tag." ".$req_date);
+}
 
 echo $result;
 
